@@ -1,5 +1,5 @@
 const expect =require('expect');
-const {genMsg}=require('../helpers/msg');
+const {genMsg,genLocation}=require('../helpers/msg');
 
 describe('genMsg',()=>{
     it('should generate correct message object',()=>{
@@ -9,5 +9,22 @@ describe('genMsg',()=>{
 
         expect(typeof message.createsAt).toBe('number');
         expect(message).toMatchObject({from, text});
+    })
+})
+
+
+describe('genLocation',()=>{
+    it('should generate correct location object',()=>{
+        let from='den',
+        lat=13,
+        lon=22,
+        url="https://www.google.com/maps?q=13,22"
+        message=genLocation(from,lat,lon);
+
+        expect(typeof message.createsAt).toBe('number');
+        expect(message).toMatchObject({from, url});
+
+
+    
     })
 })

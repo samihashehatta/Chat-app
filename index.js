@@ -7,7 +7,7 @@ const socketIO=require('socket.io');
 
 const server=http.createServer(app);
 const io = socketIO(server); 
-const {genMsg}=require('./helpers/msg');
+const {genMsg,genLocation}=require('./helpers/msg');
 app.use(express.static(path.join(`${__dirname}/public`)));
 
 io.on('connection',(socket)=>{
@@ -22,7 +22,9 @@ io.on('connection',(socket)=>{
         io.emit('newMsg',genMsg(newMsg.from,newMsg.text))
         callback('this is from the server');
     })
-
+    socket.on('creatLocation',(coords)=>{
+        io.emit('newLoc',genLocation('admin',coords.latitude,coords.longitude))
+    });
     socket.on('disconnect',()=>{
         console.log('diss')
     })
@@ -30,6 +32,7 @@ io.on('connection',(socket)=>{
 app.get('/',(req,res)=>{
    res.render('index.html') 
 });
+
 
 
 
