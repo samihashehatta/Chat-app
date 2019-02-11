@@ -1,6 +1,7 @@
 const express =require('express');
 const app = express();
 const path = require('path');
+const Keys =require('./config/keys');
 
 
 app.use(express.static(path.join(`${__dirname}/public`)));
@@ -12,9 +13,8 @@ app.get('/',(req,res)=>{
 
 
 
-const port = 8000;
 
 
-app.listen(port,()=>{
-console.log(`app is running at ${port}`)
+app.listen(Keys.port,()=>{
+console.log(`app is running at ${Keys.port}`)
 });
