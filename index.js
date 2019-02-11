@@ -20,7 +20,7 @@ io.on('connection',(socket)=>{
     socket.on('createMsg',(newMsg,callback)=>{
         console.log(newMsg ,  'createMsg')
         io.emit('newMsg',genMsg(newMsg.from,newMsg.text))
-        callback('this is from the server');
+        callback();
     })
     socket.on('creatLocation',(coords)=>{
         io.emit('newLoc',genLocation('admin',coords.latitude,coords.longitude))

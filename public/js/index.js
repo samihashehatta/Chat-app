@@ -21,15 +21,17 @@ socket.on('newLoc',function(msg){
     li.append(a);
     $('#msgs').append(li)
 });
+
+
+
 $('#msg-form').on('submit',function(e){
     e.preventDefault();
-    const input = $('[name=msg]').val();
+    const input = $('[name=msg]');
     socket.emit('createMsg',{
         from:'user',
-        text:input,
-    },function(data){
-        console.log('got it ', data)
-  
+        text:input.val(),
+    },function(){
+        input.val('')
     })
 });
 
@@ -42,9 +44,10 @@ locBtn.on('click',function(){
     {
         return alert('geolocation not suppurted')
     }
-    
+    locBtn.attr('disabled','disabled').text('sending location ....');
 
     navigator.geolocation.getCurrentPosition(function(pos){
+        locBtn.removeAttr('disabled').text('send location')
         socket.emit('creatLocation',{
             latitude:pos.coords.latitude,
             longitude:pos.coords.longitude
@@ -52,8 +55,11 @@ locBtn.on('click',function(){
        //latitude: 26.820553
         // longitude
 
+
     },function(){
 
          alert('geolocation not found')
+        locBtn.removeAttr('disabled').text('send location')
+
     })
 })

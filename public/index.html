@@ -4,26 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/index.css">
     <title>Sam chat</title>
 </head>
-<body>
-    <p>welcome to chat app</p>
+<body class="chat">
+    <div class="chat__sidebar">
+        <h3>People</h3>
+        <div id="users"></div>
+    </div>
 
-    <ol id="msgs">
 
-    </ol>
+    <div class="chat__main">
 
-    <form action="" id="msg-form">
+        <ol id="msgs" class="chat__messages">
 
-        <input type="text" name="msg">
+         </ol>
+            <div class="chat__footer">
+                    <form action="" id="msg-form">
+            
+                            <input  type="text" name="msg" autofocus autocomplete="off">
+                            
+                                 <button type="submit">
+                                        send
+                                 </button>
+                        </form>
+                         <button id="sendLoc">
+                                    send Location
+                        </button>
+            </div>
+        
+            
+    </div>
 
-        <button type="submit">
-            send
-        </button>
-    </form>
-    <button id="sendLoc">
-        send Location
-    </button>
 
 
 
