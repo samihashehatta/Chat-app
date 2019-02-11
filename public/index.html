@@ -9,10 +9,28 @@
 <body>
     <p>welcome to chat app</p>
 
-    <script src="/socket.io/socket.io.js">
-    </script>
-    <script src="js/index.js">
-      
-    </script>
+    <ol id="msgs">
+
+    </ol>
+
+    <form action="" id="msg-form">
+
+        <input type="text" name="msg">
+
+        <button type="submit">
+            send
+        </button>
+    </form>
+
+
+
+
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+     crossorigin="anonymous"></script>
+     <script src="js/index.js"></script>
 </body>
 </html>

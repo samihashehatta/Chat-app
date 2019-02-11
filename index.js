@@ -6,32 +6,21 @@ const http=require('http');
 const socketIO=require('socket.io');
 
 const server=http.createServer(app);
-const io = socketIO(server);
+const io = socketIO(server); 
+const {genMsg}=require('./helpers/msg');
 app.use(express.static(path.join(`${__dirname}/public`)));
 
 io.on('connection',(socket)=>{
     console.log('new user connected')
 
-    socket.emit('newMsg',{
-        from:'admin',
-        text:'Welcome bithc'
-    });
-    socket.broadcast.emit('newMsg',{
-        from:'admin',
-        text:'Someone connected ',
-        createsAt:new Date().getTime(),
-
-    })
+    socket.emit('newMsg',genMsg('admin','welcome bitch'));
+    socket.broadcast.emit('newMsg',genMsg('Admin','someone connected'))
 
 
-    socket.on('createMsg',(newMsg)=>{
+    socket.on('createMsg',(newMsg,callback)=>{
         console.log(newMsg ,  'createMsg')
-        io.emit('newMsg',{
-            from:newMsg.from,
-            text:newMsg.text,
-            createsAt:new Date().getTime(),
-        })
-       
+        io.emit('newMsg',genMsg(newMsg.from,newMsg.text))
+        callback('this is from the server');
     })
 
     socket.on('disconnect',()=>{
