@@ -39,13 +39,43 @@
 
 
 
-
-
+    <script id="msg-temp" type="text/template">
+        <li class="message">
+            <div class="message__title">
+                <h4>
+                    {{from}}
+                </h4>
+                <span>
+                    {{time}}
+                </span>
+            </div>
+            <div class="message__body">
+                <p> {{text}} </p>
+            </div>
+        </li>
+    </script>
+    <script id="msg-loc-temp" type="text/template">
+        <li class="message">
+            <div class="message__title">
+                <h4>
+                    {{from}}
+                </h4>
+                <span>
+                    {{time}}
+                </span>
+            </div>
+            <div class="message__body">
+                <a target="_blank " href="{{url}}">my current locatinon</a>
+            </div>
+        </li>
+    </script>
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
      crossorigin="anonymous"></script>
+     <script src="js/moment.js"></script>
+     <script src="js/mustache.js"></script>
      <script src="js/index.js"></script>
 </body>
 </html>
